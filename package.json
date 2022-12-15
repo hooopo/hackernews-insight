@@ -1,5 +1,5 @@
 {
-  "name": "my-evidence-project",
+  "name": "hackernews-insight",
   "version": "0.0.1",
   "scripts": {
     "build": "evidence build",
@@ -12,6 +12,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@evidence-dev/evidence": "^6.0.1"
+    "@hooopo/evidence": "^6.0.1"
   }
 }
