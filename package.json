@@ -12,6 +12,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@hooopo/evidence": "^6.0.1"
+    "@hooopo/evidence": "^6.0.3"
   }
 }
