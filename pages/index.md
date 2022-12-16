@@ -10,6 +10,6 @@
 
 * [Overview](/overview)
 * [User Analysis](/user-analysis)
-* Keyword Analysis
-* Domain Analysis
+* [Keyword Analysis](/keyword-analysis)
+* [Domain Analysis](/domain-analysis)
 * Github Repo Analysis
