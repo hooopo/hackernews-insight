@@ -1,3 +1,14 @@
+# Schema of hackernews datasets
+
+```schema
+desc hackernews
+```
+
+<DataTable
+    data={schema} 
+    rows=20
+    rowNumbers=false
+/>
 
 # Total number of datasets
 
