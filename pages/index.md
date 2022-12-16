@@ -16,12 +16,12 @@ desc hackernews
 ```items_per_month
 SELECT 
   count(*) as count, 
-  DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as month 
+  DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
 FROM hackernews 
 GROUP BY 2 
 ORDER BY 2 ASC;
 ```
-<BarChart data = {items_per_month} y=count title = 'Items by Month' />
+<BarChart data = {items_per_month} y=count x=date title = 'Items by Month' />
 
 # Write Markdown
 Evidence creates pages from markdown files. The file for this page is:
