@@ -4,7 +4,7 @@
 SELECT 
   count(*) as count, 
   DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM hackernews 
+FROM items 
 WHERE lower(url) like '%sql%' or lower(title) like '%sql%' or lower(text) like '%sql%'
 GROUP BY 2 
 ORDER BY 2 ASC;

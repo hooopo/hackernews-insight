@@ -2,7 +2,7 @@
 
 ```most_submit_users
 select `by`, count(*) as count
-from hackernews 
+FROM items 
 where type = 'story'
 group by 1 
 order by 2 desc 
@@ -23,7 +23,7 @@ limit 10;
 
 ```most_comments_users
 select `by`, count(*) as count
-from hackernews 
+FROM items 
 where type = 'comment'
 group by 1 
 order by 2 desc 
@@ -43,7 +43,7 @@ limit 10;
 
 ```most_score_users
 select `by`, sum(score) as total_score
-from hackernews 
+FROM items 
 group by 1 
 order by 2 desc 
 limit 10;

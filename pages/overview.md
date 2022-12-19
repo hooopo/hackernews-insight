@@ -1,7 +1,7 @@
 # Schema of hackernews datasets
 
 ```schema
-desc hackernews
+desc items
 ```
 
 <DataTable
@@ -16,7 +16,7 @@ desc hackernews
 select 
 count(*),
 sum(dead) as dead_count
-from hackernews
+FROM items
 
 ```
 
@@ -32,7 +32,7 @@ from hackernews
 select
   type,
   count(*) as count
-from hackernews
+FROM items
 group by 1
 order by 2 desc
 ```
@@ -47,7 +47,7 @@ order by 2 desc
 SELECT 
   count(*) as count, 
   DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM hackernews 
+FROM items 
 GROUP BY 2 
 ORDER BY 2 ASC;
 ```
@@ -59,7 +59,7 @@ ORDER BY 2 ASC;
 SELECT 
   count(*) as count, 
   DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM hackernews 
+FROM items 
 WHERE type = 'story'
 GROUP BY 2 
 ORDER BY 2 ASC;
@@ -72,7 +72,7 @@ ORDER BY 2 ASC;
 SELECT 
   count(*) as count, 
   DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM hackernews 
+FROM items 
 WHERE type = 'comment'
 GROUP BY 2 
 ORDER BY 2 ASC;
@@ -86,7 +86,7 @@ ORDER BY 2 ASC;
 SELECT 
   count(*) as count, 
   DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM hackernews 
+FROM items 
 WHERE type = 'story' and url is not null
 GROUP BY 2 
 ORDER BY 2 ASC;
@@ -99,7 +99,7 @@ ORDER BY 2 ASC;
 SELECT 
   count(*) as count, 
   DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM hackernews 
+FROM items 
 WHERE type = 'story' and url is null
 GROUP BY 2 
 ORDER BY 2 ASC;
@@ -112,7 +112,7 @@ ORDER BY 2 ASC;
 SELECT 
   count(*) as count, 
   DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM hackernews 
+FROM items 
 WHERE type = 'story' and dead = 1
 GROUP BY 2 
 ORDER BY 2 ASC;
