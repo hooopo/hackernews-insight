@@ -1,0 +1,19 @@
+# This action triggers the build hook
+name: Schedule Build Hook Trigger
+
+# Controls when the workflow will run
+on:
+  schedule:
+  # Runs at every half hour
+  - cron: "0,30 * * * *"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+# The workflow to run
+jobs:
+  build:
+  runs-on: ubuntu-latest
+  steps:
+  # Runs a request to the build hook
+    - name: Build hook request
+      run: curl -X POST -d {} ${{ secrets.BUILD_HOOK }}
