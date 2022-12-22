@@ -2,13 +2,13 @@
 
 ```top_domain
 SELECT
-  Substring_index(Substring_index(Substring_index(Substring_index(url, '/', 3), '://', -1), '/', 1), '?', 1) AS domain,
-  Count(*) as count
-FROM   items
-WHERE  url IS NOT NULL
-GROUP  BY 1
-ORDER  BY 2 DESC
-LIMIT  20
+    SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', 3), '://', -1), '/', 1), '?', 1) AS domain,
+    COUNT(*) AS count
+FROM items
+WHERE url IS NOT NULL
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 20
 ```
 
 <DataTable
@@ -21,10 +21,10 @@ LIMIT  20
 
 ```github_stories_per_month
 SELECT
-  count(*) as count,
-  DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date
+    COUNT(*) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
-WHERE type = 'story' and url like '%github.com%'
+WHERE type = 'story' AND url LIKE '%github.com%'
 GROUP BY 2
 ORDER BY 2 ASC;
 ```
@@ -35,17 +35,17 @@ ORDER BY 2 ASC;
 
 ```top_tld_domain
 SELECT
-  substring_index(
-    Substring_index(Substring_index(Substring_index(Substring_index(url, '/', 3), '://', -1), '/', 1), '?', 1),
-    '.',
-    -1
-  ) as tld,
-  Count(*) as count
+    SUBSTRING_INDEX(
+        SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', 3), '://', -1), '/', 1), '?', 1),
+        '.',
+        -1
+    ) AS tld,
+    COUNT(*) AS count
 FROM items
-WHERE  url IS NOT NULL
-GROUP  BY 1
-ORDER  BY 2 DESC
-LIMIT  10
+WHERE url IS NOT NULL
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10
 ```
 
 <DataTable
@@ -58,19 +58,19 @@ LIMIT  10
 
 ```avg_score_of_tld_domain
 SELECT
-  substring_index(
-    Substring_index(Substring_index(Substring_index(Substring_index(url, '/', 3), '://', -1), '/', 1), '?', 1),
-    '.',
-    -1
-  ) as tld,
-  avg(score) as avg_score,
-  count(*)
-FROM   items
-WHERE  url IS NOT NULL
-GROUP  BY 1
-HAVING count(*) > 50
-ORDER  BY 2 DESC
-LIMIT  10
+    SUBSTRING_INDEX(
+        SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', 3), '://', -1), '/', 1), '?', 1),
+        '.',
+        -1
+    ) AS tld,
+    AVG(score) AS avg_score,
+    COUNT(*)
+FROM items
+WHERE url IS NOT NULL
+GROUP BY 1
+HAVING COUNT(*) > 50
+ORDER BY 2 DESC
+LIMIT 10
 ```
 
 <DataTable

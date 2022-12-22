@@ -13,9 +13,9 @@ desc items
 # Total number of datasets
 
 ```total_items
-select 
-count(*),
-sum(dead) as dead_count
+SELECT
+    COUNT(*),
+    SUM(dead) AS dead_count
 FROM items
 
 ```
@@ -29,12 +29,12 @@ FROM items
 # Number of items of each type
 
 ```items_per_type
-select
-  type,
-  count(*) as count
+SELECT
+    type,
+    COUNT(*) AS count
 FROM items
-group by 1
-order by 2 desc
+GROUP BY 1
+ORDER BY 2 DESC
 ```
 
 <DataTable
@@ -44,11 +44,11 @@ order by 2 desc
 # How many items created per month?
 
 ```items_per_month
-SELECT 
-  count(*) as count, 
-  DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM items 
-GROUP BY 2 
+SELECT
+    COUNT(*) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {items_per_month} y=count x=date  />
@@ -56,12 +56,12 @@ ORDER BY 2 ASC;
 # How many stories created per month?
 
 ```stories_per_month
-SELECT 
-  count(*) as count, 
-  DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM items 
+SELECT
+    COUNT(*) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
 WHERE type = 'story'
-GROUP BY 2 
+GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {stories_per_month} y=count x=date  />
@@ -69,12 +69,12 @@ ORDER BY 2 ASC;
 # How many comments created per month?
 
 ```comments_per_month
-SELECT 
-  count(*) as count, 
-  DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM items 
+SELECT
+    COUNT(*) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
 WHERE type = 'comment'
-GROUP BY 2 
+GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {comments_per_month} y=count x=date  />
@@ -83,12 +83,12 @@ ORDER BY 2 ASC;
 # How many URL stories created per month?
 
 ```url_stories_per_month
-SELECT 
-  count(*) as count, 
-  DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM items 
-WHERE type = 'story' and url is not null
-GROUP BY 2 
+SELECT
+    COUNT(*) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE type = 'story' AND url IS NOT NULL
+GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {url_stories_per_month} y=count x=date  />
@@ -96,12 +96,12 @@ ORDER BY 2 ASC;
 # How many text stories created per month?
 
 ```text_stories_per_month
-SELECT 
-  count(*) as count, 
-  DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM items 
-WHERE type = 'story' and url is null
-GROUP BY 2 
+SELECT
+    COUNT(*) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE type = 'story' AND url IS NULL
+GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {text_stories_per_month} y=count x=date  />
@@ -109,12 +109,12 @@ ORDER BY 2 ASC;
 # How many dead stories created per month?
 
 ```dead_stories_per_month
-SELECT 
-  count(*) as count, 
-  DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') as date 
-FROM items 
-WHERE type = 'story' and dead = 1
-GROUP BY 2 
+SELECT
+    COUNT(*) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE type = 'story' AND dead = 1
+GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {dead_stories_per_month} y=count x=date  />

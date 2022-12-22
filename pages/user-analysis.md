@@ -1,7 +1,8 @@
 # Total number of registered users
 
 ```total_users
-select count(*) as count from users
+SELECT COUNT(*) AS count
+FROM users;
 ```
 <BigValue 
     data={total_users}
@@ -11,11 +12,11 @@ select count(*) as count from users
 # Number of new users per month
 
 ```users_per_month
-select DATE_FORMAT(from_unixtime(created),"%Y-%m-01") as date,
-  count(*) as count
-from users
-group by 1
-order by 1 asc
+SELECT DATE_FORMAT(FROM_UNIXTIME(created), "%Y-%m-01") AS date,
+       COUNT(*) AS count
+FROM users
+GROUP BY 1
+ORDER BY 1 ASC;
 ```
 
 <BarChart 
@@ -27,15 +28,15 @@ order by 1 asc
 # What is the trend of total cumulative users per month?
 
 ```cumulative_total_users
-with per_month as (
-select DATE_FORMAT(from_unixtime(created),"%Y-%m-01") as date,
-  count(*) as count
-from users
-group by 1
-order by 1 asc
+WITH per_month AS (
+    SELECT DATE_FORMAT(FROM_UNIXTIME(created), "%Y-%m-01") AS date,
+           COUNT(*) AS count
+    FROM users
+    GROUP BY 1
+    ORDER BY 1 ASC
 )
 SELECT date,
-  SUM(count) OVER (ORDER BY date ASC) AS cumulative_count
+       SUM(count) OVER (ORDER BY date ASC) AS cumulative_count
 FROM per_month
 ```
 
@@ -48,12 +49,12 @@ FROM per_month
 # Users who submitted the most stories on hackernews
 
 ```most_submit_users
-select `by`, count(*) as count
-FROM items 
-where type = 'story'
-group by 1 
-order by 2 desc 
-limit 10;
+SELECT `by`, COUNT(*) AS count
+FROM items
+WHERE type = 'story'
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10;
 ```
 
 <BarChart 
@@ -69,12 +70,12 @@ limit 10;
 # Users with the most comments submitted on hackernews
 
 ```most_comments_users
-select `by`, count(*) as count
-FROM items 
-where type = 'comment'
-group by 1 
-order by 2 desc 
-limit 10;
+SELECT `by`, COUNT(*) AS count
+FROM items
+WHERE type = 'comment'
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10;
 ```
 
 <BarChart 
@@ -89,11 +90,11 @@ limit 10;
 # Users who got the most voted on hackernews
 
 ```most_score_users
-select `by`, sum(score) as total_score
-FROM items 
-group by 1 
-order by 2 desc 
-limit 10;
+SELECT `by`, SUM(score) AS total_score
+FROM items
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10;
 ```
 
 <BarChart 
