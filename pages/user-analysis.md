@@ -1,3 +1,50 @@
+# Total number of registered users
+
+```total_users
+select count(*) as count from users
+```
+<BigValue 
+    data={total_users}
+    value="count"
+/> 
+
+# Number of new users per month
+
+```users_per_month
+select DATE_FORMAT(from_unixtime(created),"%Y-%m-01") as date,
+  count(*) as count
+from users
+group by 1
+order by 1 asc
+```
+
+<BarChart 
+    data={users_per_month} 
+    x=date 
+    y=count
+/>
+
+# What is the trend of total cumulative users per month?
+
+```cumulative_total_users
+with per_month as (
+select DATE_FORMAT(from_unixtime(created),"%Y-%m-01") as date,
+  count(*) as count
+from users
+group by 1
+order by 1 asc
+)
+SELECT date,
+  SUM(count) OVER (ORDER BY date ASC) AS cumulative_count
+FROM per_month
+```
+
+<LineChart 
+    data={cumulative_total_users} 
+    x=date 
+    y=cumulative_count
+/>
+
 # Users who submitted the most stories on hackernews
 
 ```most_submit_users
