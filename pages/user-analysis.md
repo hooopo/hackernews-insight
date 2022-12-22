@@ -46,6 +46,33 @@ FROM per_month
     y=cumulative_count
 />
 
+# What is the number of active users (who submitted story, comment) per year, per quarter, per month, per week?
+
+```user_retention
+SELECT 'YEAR Active Users' AS name, COUNT(DISTINCT `by`) AS value FROM items WHERE time > unix_timestamp(DATE_SUB(now(), INTERVAL 1 YEAR))
+UNION
+SELECT 'QUARTER Active Users' AS name, COUNT(DISTINCT `by`) AS value FROM items WHERE time > unix_timestamp(DATE_SUB(now(), INTERVAL 1 QUARTER))
+UNION
+SELECT 'MONTH Active Users' AS name, COUNT(DISTINCT `by`) AS value FROM items WHERE time > unix_timestamp(DATE_SUB(now(), INTERVAL 1 MONTH))
+UNION
+SELECT 'WEEK Active Users' AS name, COUNT(DISTINCT `by`) AS value FROM items WHERE time > unix_timestamp(DATE_SUB(now(), INTERVAL 1 WEEK))
+```
+
+<ECharts config={
+        {
+            tooltip: {
+                formatter: '{b}: {c}'
+            },
+            series: [
+                {
+                type: 'funnel',
+                data: user_retention,
+                }
+            ]
+        }
+    }
+/>
+
 # Users who submitted the most stories on hackernews
 
 ```most_submit_users
@@ -54,17 +81,12 @@ FROM items
 WHERE type = 'story'
 GROUP BY 1
 ORDER BY 2 DESC
-LIMIT 10;
+LIMIT 20;
 ```
 
-<BarChart 
+<DataTable
     data={most_submit_users} 
-    x=by 
-    y=count 
-    swapXY=true 
-    fillColor=green
-    fillOpacity=0.5
-    yAxisTitle="Submits Count" 
+    rows=10
 />
 
 # Users with the most comments submitted on hackernews
@@ -75,16 +97,13 @@ FROM items
 WHERE type = 'comment'
 GROUP BY 1
 ORDER BY 2 DESC
-LIMIT 10;
+LIMIT 20;
 ```
 
-<BarChart 
+
+<DataTable
     data={most_comments_users} 
-    x=by 
-    y=count 
-    swapXY=true 
-    fillOpacity=0.5
-    yAxisTitle="Comments Count" 
+    rows=10
 />
 
 # Users who got the most voted on hackernews
@@ -94,15 +113,10 @@ SELECT `by`, SUM(score) AS total_score
 FROM items
 GROUP BY 1
 ORDER BY 2 DESC
-LIMIT 10;
+LIMIT 20;
 ```
 
-<BarChart 
-    data={most_score_users} 
-    x=by 
-    y=total_score
-    swapXY=true 
-    fillColor=red
-    fillOpacity=0.5
-    yAxisTitle="Total Score" 
+<DataTable
+    data={most_submit_users} 
+    rows=10
 />

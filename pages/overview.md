@@ -41,6 +41,7 @@ ORDER BY 2 DESC
     data={items_per_type} 
 />
 
+
 # How many items created per month?
 
 ```items_per_month
@@ -58,13 +59,15 @@ ORDER BY 2 ASC;
 ```stories_per_month
 SELECT
     COUNT(*) AS count,
-    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date,
+    SUM(type = 'story') AS story_count,
+    SUM(type = 'comment') AS comment_count,
+    SUM(type = 'job') AS job_count
 FROM items
-WHERE type = 'story'
 GROUP BY 2
 ORDER BY 2 ASC;
 ```
-<LineChart data = {stories_per_month} y=count x=date  />
+<LineChart data = {stories_per_month} y={["count", "story_count", "comment_count", "job_count"]} x=date  />
 
 # How many comments created per month?
 
