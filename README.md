@@ -22,3 +22,7 @@ Don't clone this repo, just download the code using the steps above.
 - [Getting Started Walkthrough](https://docs.evidence.dev/getting-started/install-evidence)
 - [Project Home Page](https://www.evidence.dev)
 - [Github](https://github.com/evidence-dev/evidence)
+
+## How it works
+
+![image](https://user-images.githubusercontent.com/63877/209258139-1d02ae28-ce38-490f-94c5-0af8cf1394bb.png)
