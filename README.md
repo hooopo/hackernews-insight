@@ -1,6 +1,6 @@
 # Hacker News Insight
 
-**Hacker News Insight**  analyzes the open source public data of Hacker News to mine some valuable trends and insights.
+**[Hacker News Insight](https://hackernews-insight.vercel.app/)**  analyzes the open source public data of Hacker News to mine some valuable trends and insights.
 
 ## How it works
 
