@@ -1,4 +1,4 @@
-# About hackernews insight
+# Hacker News Insight
 
 * [Overview](/overview)
 * [User Analysis](/user-analysis)
@@ -20,3 +20,5 @@ TiDB Cloud is a cloud-native, distributed HTAP database built for elastic scalin
 
 
 # About Evidence
+
+Evidence enables analysts to deliver a polished business intelligence system using SQL and markdown.
