@@ -92,3 +92,29 @@ GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {tensorflow_per_month} y=count x=date  />
+
+# how many times is Serverless mentioned on hackernews
+
+```serverless_per_month
+SELECT
+    COUNT(*) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE LOWER(url) LIKE '%serverless%' OR LOWER(title) LIKE '%serverless%' OR LOWER(text) LIKE '%serverless%'
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {serverless_per_month} y=count x=date  />
+
+# how many times is Web3 mentioned on hackernews
+
+```web3_per_month
+SELECT
+    COUNT(*) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE LOWER(url) LIKE '%web3%' OR LOWER(title) LIKE '%web3%' OR LOWER(text) LIKE '%web3%'
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {web3_per_month} y=count x=date  />
