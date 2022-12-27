@@ -118,3 +118,16 @@ GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {web3_per_month} y=count x=date  />
+
+# how many times is covid-19 mentioned on hackernews
+
+```co_per_month
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bcovid19\\b|\\bcovid-19\\b') AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {co_per_month} y=count x=date  />
