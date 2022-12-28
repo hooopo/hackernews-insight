@@ -247,3 +247,20 @@ GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {metaverse_per_month} y=count x=date  />
+
+# how many times is microservice mentioned?
+
+```microservice_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) REGEXP 'microservice|microservices'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {microservice_per_month} y=count x=date  />

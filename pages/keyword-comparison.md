@@ -13,6 +13,22 @@ ORDER BY 3 ASC;
 
 <LineChart data = {k8s_vs_docker} y={["k8s_cnt", "docker_cnt"]} x=date />
 
+# RESTful vs GraphQL vs gRPC mentioned on hackernews
+
+```restful_vs_graphql_vs_grpc
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\brestful\\b|\\brest api\\b') AS restful_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bgraphql\\b') AS graphql_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bgrpc\\b') AS grpc_cnt,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 4
+ORDER BY 4 ASC;
+```
+
+<LineChart data = {restful_vs_graphql_vs_grpc} y={["restful_cnt", "graphql_cnt", "grpc_cnt"]} x=date />
+
 # MySQL vs Postgres vs MongoDB
 
 ```mysql_vs_postgres_vs_mongodb
