@@ -3,7 +3,7 @@
 * [Overview](/overview)
 * [User Analysis](/user-analysis)
 * [Keyword Analysis](/keyword-analysis)
-* [Keyword Comparison][/keyword-comparison]
+* [Keyword Comparison](/keyword-comparison)
 * [Domain Analysis](/domain-analysis)
 * [Github Repo Analysis](https://ossinsight.io)
 
