@@ -146,6 +146,60 @@ ORDER BY 2 ASC;
 ```
 <LineChart data = {database_per_month} y=count x=date  />
 
+# how many times is Lowcode mentioned on hackernews
+
+```lowcode_per_month
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\blowcode\\b|\\bnocode\\b|\\blow code\\b|\\bno code\\b') AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {lowcode_per_month} y=count x=date  />
+
+
+# how many times is AI mentioned on hackernews
+
+```ai_per_month
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bartificial intelligence\\b|\\bai\\b') AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {ai_per_month} y=count x=date  />
+
+# how many times is WebAssembly mentioned on hackernews
+
+```webassembly_per_month
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bwebassembly\\b|\\bweb assembly\\b|\\bwasm\\b') AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {webassembly_per_month} y=count x=date  />
+
+
+# how many times is SSG mentioned on hackernews
+
+```ssg_per_month
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bssg\\b|\\bstatic site generator\\b') AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {ssg_per_month} y=count x=date  />
+
 
 # how many times is hn.algolia.com mentioned?
 
