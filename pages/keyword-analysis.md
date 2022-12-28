@@ -110,27 +110,56 @@ ORDER BY 2 ASC;
 
 ```web3_per_month
 SELECT
-    COUNT(*) AS count,
-    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
-FROM items
-WHERE LOWER(url) LIKE '%web3%' OR LOWER(title) LIKE '%web3%' OR LOWER(text) LIKE '%web3%'
-GROUP BY 2
-ORDER BY 2 ASC;
-```
-<LineChart data = {web3_per_month} y=count x=date  />
-
-# how many times is covid-19 mentioned on hackernews
-
-```co_per_month
-SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bcovid19\\b|\\bcovid-19\\b') AS count,
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bweb3\\b') AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
 GROUP BY 2
 ORDER BY 2 ASC;
 ```
-<LineChart data = {co_per_month} y=count x=date  />
+<LineChart data = {web3_per_month} y=count x=date  />
+
+
+```hadoop_vs_sql
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bsql\\b') AS sql_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bhadoop\\b') AS hadoop_cnt,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 3
+ORDER BY 3 ASC;
+```
+
+<LineChart data = {hadoop_vs_sql} y={["sql_cnt", "hadoop_cnt"]} x=date  />
+
+
+```k8s_vs_docker
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bk8s\\b|\\bkubernetes\\b') AS k8s_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bdocker\\b') AS docker_cnt,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 3
+ORDER BY 3 ASC;
+```
+<LineChart data = {k8s_vs_docker} y={["k8s_cnt", "docker_cnt"]} x=date  />
+
+```mysql_vs_postgres
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bmysql\\b') AS mysql_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bpostgres\\b|\\bpostgresql\\b') AS pg_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bmongodb\\b') AS mongo_cnt,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 4
+ORDER BY 4 ASC;
+```
+
+<LineChart data = {mysql_vs_postgres} y={["mysql_cnt", "pg_cnt", "mongo_cnt"]} x=date  />
+
 
 # how many times is hn.algolia.com mentioned?
 
@@ -148,3 +177,20 @@ GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {hn_algolia_per_month} y=count x=date  />
+
+# how many times is metaverse mentioned?
+
+```metaverse_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) REGEXP 'metaverse'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {metaverse_per_month} y=count x=date  />
