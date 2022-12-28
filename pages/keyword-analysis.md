@@ -200,6 +200,19 @@ ORDER BY 2 ASC;
 ```
 <LineChart data = {ssg_per_month} y=count x=date  />
 
+# how many times is GraphQL mentioned on hackernews
+
+```graphql_per_month
+SELECT
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bssg\\b|\\bgraphql\\b') AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 and deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {graphql_per_month} y=count x=date  />
+
 
 # how many times is hn.algolia.com mentioned?
 
