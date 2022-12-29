@@ -36,14 +36,15 @@ SELECT
     sum(lower(concat_ws(' ', title, url, text)) regexp '\\bmysql\\b') AS mysql_cnt,
     sum(lower(concat_ws(' ', title, url, text)) regexp '\\bpostgres\\b|\\bpostgresql\\b') AS postgres_cnt,
     sum(lower(concat_ws(' ', title, url, text)) regexp '\\bmongodb\\b') AS mongodb_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bsqlite\\b') AS sqlite_cnt,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
-GROUP BY 4
-ORDER BY 4 ASC;
+GROUP BY 5
+ORDER BY 5 ASC;
 ```
 
-<LineChart data = {mysql_vs_postgres_vs_mongodb} y={["mysql_cnt", "postgres_cnt", "mongodb_cnt"]} x=date />
+<LineChart data = {mysql_vs_postgres_vs_mongodb} y={["mysql_cnt", "postgres_cnt", "mongodb_cnt", "sqlite_cnt"]} x=date />
 
 # Rust vs Golang mentioned on hackernews
 
