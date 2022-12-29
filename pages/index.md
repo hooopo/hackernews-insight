@@ -5,6 +5,8 @@
 * [Keyword Analysis](/keyword-analysis)
 * [Keyword Comparison](/keyword-comparison)
 * [Domain Analysis](/domain-analysis)
+* [Story list by comment](/story-list-by-comment)
+* [Story list by score](/story-list-by-score)
 * [Github Repo Analysis](https://ossinsight.io)
 
 This site is [open source](https://github.com/hooopo/hackernews-insight), if you have some ideas, you can contribute by submitting a [Pull Request](https://github.com/hooopo/hackernews-insight)
