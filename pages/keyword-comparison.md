@@ -51,7 +51,7 @@ ORDER BY 5 ASC;
 ```rust_vs_golang
 SELECT
     sum(lower(concat_ws(' ', title, url, text)) regexp '\\brust\\b') AS rust_cnt,
-    sum(concat_ws(' ', title, url, text) regexp binary('\\bGo\\b|\\bGolang\\b')) AS golang_cnt,
+    sum(concat_ws(' ', title, url, text) COLLATE utf8mb4_bin regexp ('\\bGo\\b|\\bGolang\\b')) AS golang_cnt,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
