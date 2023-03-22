@@ -2,8 +2,8 @@
 
 ```k8s_vs_docker
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bk8s\\b|\\bkubernetes\\b') AS k8s_cnt,
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bdocker\\b') AS docker_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%k8s%') AS k8s_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%docker%') AS docker_cnt,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -17,9 +17,9 @@ ORDER BY 3 ASC;
 
 ```restful_vs_graphql_vs_grpc
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\brestful\\b|\\brest api\\b') AS restful_cnt,
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bgraphql\\b') AS graphql_cnt,
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bgrpc\\b') AS grpc_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%restful%') AS restful_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%graphql%') AS graphql_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%grpc%') AS grpc_cnt,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -33,10 +33,10 @@ ORDER BY 4 ASC;
 
 ```mysql_vs_postgres_vs_mongodb
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bmysql\\b') AS mysql_cnt,
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bpostgres\\b|\\bpostgresql\\b') AS postgres_cnt,
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bmongodb\\b') AS mongodb_cnt,
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bsqlite\\b') AS sqlite_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%mysql%') AS mysql_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%postgres%') AS postgres_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%mongodb%') AS mongodb_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%sqlite%') AS sqlite_cnt,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -50,7 +50,7 @@ ORDER BY 5 ASC;
 
 ```rust_vs_golang
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\brust\\b') AS rust_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%rust%') AS rust_cnt,
     sum(concat_ws(' ', title, url, text) COLLATE utf8mb4_bin regexp ('\\bGo\\b|\\bGolang\\b')) AS golang_cnt,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
@@ -66,10 +66,10 @@ ORDER BY 3 ASC;
 
 ```react_vs_vue_vs_angular
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\breactjs\\b|\\breact.js\\b') AS react_cnt,
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bvue\\b|\\bvue.js\\b|\\bvuejs\\b') AS vue_cnt,
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bangularb\\b|\\bangular.js\\b|\\bangularjs\\b') AS angular_cnt,
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bsvelte\\b') AS svelte_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%reactjs%') AS react_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%vue%') AS vue_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%angular%') AS angular_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%svelte%') AS svelte_cnt,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -84,8 +84,8 @@ ORDER BY 5 ASC;
 
 ```android_vs_ios
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bandroid\\b') AS android_cnt,
-    sum(concat_ws(' ', title, url, text) regexp '\\bios\\b') AS ios_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%android%') AS android_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%ios%') AS ios_cnt,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -100,10 +100,10 @@ ORDER BY 3 ASC;
 
 ```google_vs_apple
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bgoogle\\b') AS google_cnt,
-    sum(concat_ws(' ', title, url, text) regexp '\\bapple\\b') AS apple_cnt,
-    sum(concat_ws(' ', title, url, text) regexp '\\amazon\\b') AS amazon_cnt,
-    sum(concat_ws(' ', title, url, text) regexp '\\bfacebook\\b') AS facebook_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%google%') AS google_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%apple%') AS apple_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%amazon%') AS amazon_cnt,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%facebook%') AS facebook_cnt,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
