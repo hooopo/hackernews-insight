@@ -33,7 +33,7 @@ SELECT
     SUM(
       LOWER(
         CONCAT_WS(' ', title, url, text)
-      ) REGEXP 'chatgpt'
+      ) LIKE '%chatgpt%'
     ) AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
