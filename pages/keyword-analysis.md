@@ -128,7 +128,7 @@ ORDER BY 2 ASC;
 
 ```web3_per_month
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bweb3\\b') AS count,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%web3%') AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -142,7 +142,7 @@ ORDER BY 2 ASC;
 
 ```cloud_native_per_month
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bcloud native\\b|\\bcloudnative\\b') AS count,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%cloud native%') AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -155,7 +155,7 @@ ORDER BY 2 ASC;
 
 ```database_per_month
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bdatabase\\b') AS count,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%database%') AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -168,7 +168,7 @@ ORDER BY 2 ASC;
 
 ```lowcode_per_month
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\blowcode\\b|\\bnocode\\b|\\blow code\\b|\\bno code\\b') AS count,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%lowcode%') AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -182,7 +182,7 @@ ORDER BY 2 ASC;
 
 ```ai_per_month
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bartificial intelligence\\b|\\bai\\b') AS count,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%artificial intelligence%') AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -195,7 +195,7 @@ ORDER BY 2 ASC;
 
 ```webassembly_per_month
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bwebassembly\\b|\\bweb assembly\\b|\\bwasm\\b') AS count,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%webassembly%') AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -209,7 +209,7 @@ ORDER BY 2 ASC;
 
 ```ssg_per_month
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bssg\\b|\\bstatic site generator\\b') AS count,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%ssg%') AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -222,7 +222,7 @@ ORDER BY 2 ASC;
 
 ```graphql_per_month
 SELECT
-    sum(lower(concat_ws(' ', title, url, text)) regexp '\\bssg\\b|\\bgraphql\\b') AS count,
+    sum(lower(concat_ws(' ', title, url, text)) LIKE '%graphql%') AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
 WHERE dead = 0 and deleted = 0
@@ -239,7 +239,7 @@ SELECT
     SUM(
       LOWER(
         CONCAT_WS(' ', title, url, text)
-      ) REGEXP 'hn.algolia.com'
+      ) LIKE '%hn.algolia.com%'
     ) AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
@@ -256,7 +256,7 @@ SELECT
     SUM(
       LOWER(
         CONCAT_WS(' ', title, url, text)
-      ) REGEXP 'metaverse'
+      ) LIKE '%metaverse%'
     ) AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
@@ -273,7 +273,7 @@ SELECT
     SUM(
       LOWER(
         CONCAT_WS(' ', title, url, text)
-      ) REGEXP 'microservice|microservices'
+      ) LIKE '%microservice%'
     ) AS count,
     DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
 FROM items
