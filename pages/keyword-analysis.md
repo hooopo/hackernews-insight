@@ -282,3 +282,59 @@ GROUP BY 2
 ORDER BY 2 ASC;
 ```
 <LineChart data = {microservice_per_month} y=count x=date  />
+
+# how many times is vercel mentioned?
+
+```vercel_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) LIKE '%vercel%'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {vercel_per_month} y=count x=date  />
+
+# how many times is cloudflare mentioned?
+
+```cloudflare_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) LIKE '%cloudflare%'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {cloudflare_per_month} y=count x=date  />
+
+
+# how many times is planetscale mentioned?
+
+```planetscale_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) LIKE '%planetscale%'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {planetscale_per_month} y=count x=date  />
+
+
+
+
