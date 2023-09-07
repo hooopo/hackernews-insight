@@ -353,5 +353,79 @@ ORDER BY 2 ASC;
 <LineChart data = {edge_function_per_month} y=count x=date  />
 
 
+# how many times is cloudflare workers mentioned?
+
+```cloudflare_workers_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) LIKE '%cloudflare workers%'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {cloudflare_workers_per_month} y=count x=date  />
+
+# how many times is drizzle mentioned?
+
+```drizzle_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) LIKE '%drizzle%'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {drizzle_per_month} y=count x=date  />
+
+# how many times is prisma mentioned?
+
+```prisma_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) LIKE '%prisma%'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {prisma_per_month} y=count x=date  />
+
+# how many times is nextjs mentioned?
+
+```nextjs_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) LIKE '%nextjs%'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {nextjs_per_month} y=count x=date  />
+
+
+
+
+
+
+
 
 
