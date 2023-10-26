@@ -421,6 +421,23 @@ ORDER BY 2 ASC;
 ```
 <LineChart data = {nextjs_per_month} y=count x=date  />
 
+# how many times is wordpress mentioned?
+
+```wordpress_per_month
+SELECT
+    SUM(
+      LOWER(
+        CONCAT_WS(' ', title, url, text)
+      ) LIKE '%wordpress%'
+    ) AS count,
+    DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-01') AS date
+FROM items
+WHERE dead = 0 AND deleted = 0
+GROUP BY 2
+ORDER BY 2 ASC;
+```
+<LineChart data = {wordpress_per_month} y=count x=date  />
+
 
 
 
